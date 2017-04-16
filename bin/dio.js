@@ -1,3 +1,5 @@
 #! /usr/bin/env node
 
-console.log("hello")
+var gs = require('../lib/generateStructure');
+
+gs("demo");
