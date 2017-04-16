@@ -1,0 +1,14 @@
+{
+    "name": "dio-cli",
+    "version": "1.0.0",
+    "description": "dio",
+    "main": "index.js",
+    "bin": {
+        "diocli": "./bin/dio.js"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC"
+}
