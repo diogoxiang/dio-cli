@@ -1,19 +1,19 @@
 {
-  "name": "dio-cli",
-  "version": "1.0.0",
-  "description": "dio",
-  "main": "index.js",
-  "bin": {
-    "diocli": "./bin/dio.js"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bluebird": "^3.5.0",
-    "commander": "^2.9.0",
-    "fs-extra": "^2.1.2"
-  }
+    "name": "dio-cli",
+    "version": "0.0.1",
+    "description": "dio",
+    "main": "index.js",
+    "bin": {
+        "diocli": "./bin/diocli.js"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bluebird": "^3.5.0",
+        "commander": "^2.9.0",
+        "fs-extra": "^2.1.2"
+    }
 }
