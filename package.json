@@ -2,18 +2,33 @@
     "name": "dio-cli",
     "version": "0.0.1",
     "description": "dio",
-    "main": "index.js",
+    "main": "bin/dio-cli.js",
     "bin": {
-        "diocli": "./bin/diocli.js"
+        "dio": "./bin/dio-cli.js"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "",
+    "author": "diogoxiang",
     "license": "ISC",
     "dependencies": {
         "bluebird": "^3.5.0",
+        "fs-extra": "^2.1.2",
+        "babel-core": "^6.24.1",
+        "babel-loader": "^6.4.1",
+        "babel-plugin-transform-es3-member-expression-literals": "^6.22.0",
+        "babel-plugin-transform-es3-property-literals": "^6.22.0",
+        "babel-preset-es2015": "^6.24.1",
+        "babel-preset-stage-0": "^6.24.1",
+        "chalk": "^1.1.3",
         "commander": "^2.9.0",
-        "fs-extra": "^2.1.2"
+        "cross-npm-spawn": "^1.1.1",
+        "cross-spawn": "^5.0.1",
+        "empty-dir": "^0.2.1",
+        "fs-exists-sync": "^0.1.0",
+        "jsdom": "^9.12.0",
+        "ora": "^1.1.0",
+        "vinyl-fs": "^2.4.4",
+        "webpack": "^2.3.3"
     }
 }

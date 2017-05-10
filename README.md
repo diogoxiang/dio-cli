@@ -8,7 +8,7 @@ A Node Command Line Tool to auto generate a web structure.
 
 ## Usage
 
-    dio-cli <project name>
+    dio <project name>
 
 
 ### Then
@@ -18,4 +18,12 @@ A Node Command Line Tool to auto generate a web structure.
     gulp watch
 
 Now you can develop your app...
- 
+
+
+
+### 说明 
+主要用于团队构建前端项目,方便统一项目管理,以及代码规范
+目录主要功能:
+- 支持VUE单文件模式
+- 支持 ES6 
+- 采用 webpack 打包
