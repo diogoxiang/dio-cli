@@ -7,7 +7,7 @@
             "type": "node",
             "request": "launch",
             "name": "启动程序",
-            "program": "${workspaceRoot}\\bin\\diocli.js",
+            "program": "${workspaceRoot}\\bin\\dio-cli.js",
             "args": ["${env:USERNAME}"],
             "cwd": "${workspaceRoot}"
         },
