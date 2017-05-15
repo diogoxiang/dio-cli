@@ -27,3 +27,9 @@ Now you can develop your app...
 - 支持VUE单文件模式
 - 支持 ES6 
 - 采用 webpack 打包
+
+
+### update
+
+- 2017年5月15日15:08:51 
+    - 更新VUE模版
