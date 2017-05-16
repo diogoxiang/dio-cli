@@ -14,6 +14,7 @@ var options = {
     projectName: '',
     mirror: 'default',
     language: 'en'
+        // language: 'cn'
 }
 
 
