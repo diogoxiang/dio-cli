@@ -24,12 +24,28 @@ program
     .on('-h, --help', help);
 
 
-
+/**
+ * @func 初始化PC的
+ */
 program
     .command('init [projectName]')
     .description('Initialize a new Dio application in the current folder')
     .action(function(projectName, option) {
         var cmd = 'init';
+        if (option.parent.mirror) {
+            options.mirror = option.parent.mirror;
+        }
+        switchCommand(cmd, { project: projectName, mirror: options.mirror, language: options.language })
+    })
+
+/**
+ * @desc 初始化VUE版主要用于手机端的
+ */
+program
+    .command('vinit [projectName]')
+    .description('Initialize a new Vue application in the current folder ')
+    .action(function(projectName, option) {
+        var cmd = 'vinit';
         if (option.parent.mirror) {
             options.mirror = option.parent.mirror;
         }
