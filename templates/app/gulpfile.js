@@ -16,12 +16,11 @@ var assets = [],
     ENV = process.env.npm_lifecycle_event;
 
 gulp.task('clean', function(callback) {
-    del.sync([ENV+'/**/**']);
+    del.sync([ENV + '/**/**']);
     callback();
 });
-
 var webpackConfig = require('./webpack.config.js');
-var isDist = ENV ==='dist';
+var isDist = ENV === 'dist';
 
 gulp.task('webpack', function() {
     return gulp.src('src/js/index.js')
@@ -31,26 +30,26 @@ gulp.task('webpack', function() {
             assets = stats.toJson().assets;
             //https://www.npmjs.com/package/gulp-html-replace
             //require("fs").writeFileSync("stats.json",JSON.stringify(stats.toJson()));
-        })).pipe(gulp.dest(ENV+'/js/'));
+        })).pipe(gulp.dest(ENV + '/js/'));
 });
 
 gulp.task('copyCSS', function() {
-    if(isDist){
+    if (isDist) {
         return gulp.src('src/css/*.css')
             .pipe(csso()).pipe(rev())
-            .pipe(gulp.dest(ENV+'/css'))
-            .pipe(rev.manifest())                                   //- Éú³ÉÒ»¸örev-manifest.json
+            .pipe(gulp.dest(ENV + '/css'))
+            .pipe(rev.manifest()) //-  rev-manifest.json
             .pipe(gulp.dest('./rev'));
-    }else{
+    } else {
         return gulp.src('src/**/*.css')
             .pipe(gulp.dest(ENV))
     }
 });
 
 gulp.task('rev', function() {
-    return gulp.src(['./rev/*.json', ENV+'/*.html'])   //- ¶ÁÈ¡ rev-manifest.json ÎÄ¼þÒÔ¼°ÐèÒª½øÐÐcssÃûÌæ»»µÄÎÄ¼þ
-        .pipe(revCollector())                                   //- Ö´ÐÐÎÄ¼þÄÚcssÃûµÄÌæ»»
-        .pipe(gulp.dest(ENV));                     //- Ìæ»»ºóµÄÎÄ¼þÊä³öµÄÄ¿Â¼
+    return gulp.src(['./rev/*.json', ENV + '/*.html']) //- ï¿½ï¿½È¡ rev-manifest.json ï¿½Ä¼ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½cssï¿½ï¿½ï¿½æ»»ï¿½ï¿½ï¿½Ä¼ï¿½
+        .pipe(revCollector()) //- Ö´ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½cssï¿½ï¿½ï¿½ï¿½ï¿½æ»»
+        .pipe(gulp.dest(ENV)); //- ï¿½æ»»ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿Â¼
 });
 
 gulp.task('copyHTML', function() {
@@ -58,36 +57,36 @@ gulp.task('copyHTML', function() {
 });
 
 gulp.task('copyAsset', function() {
-    return gulp.src('src/asset/*.**').pipe(gulp.dest(ENV+'/asset'));
+    return gulp.src('src/asset/*.**').pipe(gulp.dest(ENV + '/asset'));
 });
 
 gulp.task('copyComponent', function() {
-    return gulp.src(['src/component/**','!src/component/**/*.js','!src/component/**/*.css','!src/component/**/*.scss','!src/component/**/*.html']).pipe(gulp.dest(ENV+'/component'));
+    return gulp.src(['src/component/**', '!src/component/**/*.js', '!src/component/**/*.css', '!src/component/**/*.scss', '!src/component/**/*.html']).pipe(gulp.dest(ENV + '/component'));
 });
 
 gulp.task('fixEvn', function() {
-    return gulp.src(['src/component/**','!src/component/**/*.js']).pipe(gulp.dest(ENV+'/component'));
+    return gulp.src(['src/component/**', '!src/component/**/*.js']).pipe(gulp.dest(ENV + '/component'));
 });
 
 //https://segmentfault.com/q/1010000005760064/a-1020000005760268
 gulp.task('replace', function() {
-    var vdName = assets[assets.length-1].name;
+    var vdName = assets[assets.length - 1].name;
     var omiName = '';
-    assets.forEach(function(item){
-        if(item.chunkNames[0]==='omi'){
+    assets.forEach(function(item) {
+        if (item.chunkNames[0] === 'omi') {
             omiName = item.name;
         }
     });
-    assets.forEach(function(item){
-        gulp.src(ENV+'/'+item.chunkNames[0]+ '.html')
+    assets.forEach(function(item) {
+        gulp.src(ENV + '/' + item.chunkNames[0] + '.html')
             .pipe(htmlreplace({
-                'omijs':(isDist?(cdn+ 'js/'+ omiName):''),
-                'vjs': (isDist?(cdn+ 'js/'+ vdName):('js/'+ vdName)),
-                'js': (isDist?(cdn+ 'js/'+ item.name):('js/'+ item.name))
+                'omijs': (isDist ? (cdn + 'js/' + omiName) : ''),
+                'vjs': (isDist ? (cdn + 'js/' + vdName) : ('js/' + vdName)),
+                'js': (isDist ? (cdn + 'js/' + item.name) : ('js/' + item.name))
             }))
             .pipe(gulp.dest(ENV));
 
-        if(item.chunkNames[0]!=='omi'&&item.chunkNames[0]!=='vendor') {
+        if (item.chunkNames[0] !== 'omi' && item.chunkNames[0] !== 'vendor') {
             gulp.src(ENV + '/js/' + item.name)
                 .pipe(header('window.Root = window.Root||{}; Root.isDev = ' + (isDist ? 'false' : 'true') + ';'))
                 .pipe(gulp.dest(ENV + '/js'))
@@ -103,22 +102,22 @@ gulp.task('cdnReplace', function() {
         .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('browser-sync',function(){
+gulp.task('browser-sync', function() {
     browserSync.init({
-        server:{
-            baseDir:'./'+ENV+'/'
+        server: {
+            baseDir: './' + ENV + '/'
         }
     });
 
-    if(!isDist) {
+    if (!isDist) {
         gulp.watch(ENV + '/**').on('change', browserSync.reload);
-        gulp.watch(['src/component/**/*.**', 'src/js/*.js', 'common/*.js'], function () {
+        gulp.watch(['src/component/**/*.**', 'src/js/*.js', 'common/*.js'], function() {
             runSequence(
                 'webpack',
                 'replace');
         });
 
-        gulp.watch(['src/css/**'], function () {
+        gulp.watch(['src/css/**'], function() {
             runSequence(
                 'copyCSS');
         });
@@ -126,7 +125,7 @@ gulp.task('browser-sync',function(){
 
 });
 
-if(isDist){
+if (isDist) {
     gulp.task('default', function(done) {
         runSequence(
             'clean',
@@ -141,7 +140,7 @@ if(isDist){
             'browser-sync',
             done);
     });
-}else{
+} else {
     gulp.task('default', function(done) {
         runSequence(
             'clean',
