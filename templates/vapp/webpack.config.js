@@ -78,8 +78,7 @@ module.exports.output = Mix.output();
  */
 
 module.exports.module = {
-    rules: [
-        {
+    rules: [{
             test: /\.vue$/,
             loader: 'vue-loader',
             options: {
