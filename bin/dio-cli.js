@@ -61,13 +61,13 @@ program.parse(process.argv);
 // // gs(pname);
 
 
-
-/**
- * @func 执行相应的方案
- * 
- * @param {any} cmd 
- * @param {any} args 
- */
+console.log(process.cwd())
+    /**
+     * @func 执行相应的方案
+     * 
+     * @param {any} cmd 
+     * @param {any} args 
+     */
 function switchCommand(cmd, args) {
     if (cmd) {
         require('../lib/' + cmd)(args);

@@ -1,6 +1,6 @@
 {
     "name": "dio-cli",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "CLI for scaffolding dio-cli projects",
     "main": "bin/dio-cli.js",
     "preferGlobal": true,
