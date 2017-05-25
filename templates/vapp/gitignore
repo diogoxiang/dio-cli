@@ -3,7 +3,3 @@
 /node_modules
 /.idea
 /rev
-node_modules
-npm-debug.log
-public/
-!public/index.html

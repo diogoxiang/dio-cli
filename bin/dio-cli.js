@@ -9,6 +9,7 @@ var chalk = require('chalk');
 var exists = require('fs-exists-sync');
 var spawn = require('cross-spawn');
 
+const logger = require('../lib/logger')
 var options = {
     cmd: '',
     projectName: '',
@@ -52,7 +53,24 @@ program
         switchCommand(cmd, { project: projectName, mirror: options.mirror, language: options.language })
     })
 
+/**
+ * @desc 编译相应的代码
+ */
+program
+    .command('prod')
+    .description('Compile your project')
+    .action(function(option) {
+        var cmd = 'prod';
+        logger.info('build', 'Compile your project')
+        switchCommand(cmd);
+    })
+
+
+
+
+
 program.parse(process.argv);
+
 
 // let pname = program.args[0]
 
@@ -61,13 +79,13 @@ program.parse(process.argv);
 // // gs(pname);
 
 
-console.log(process.cwd())
-    /**
-     * @func 执行相应的方案
-     * 
-     * @param {any} cmd 
-     * @param {any} args 
-     */
+// console.log(process.cwd())
+/**
+ * @func 执行相应的方案
+ * 
+ * @param {any} cmd 
+ * @param {any} args 
+ */
 function switchCommand(cmd, args) {
     if (cmd) {
         require('../lib/' + cmd)(args);

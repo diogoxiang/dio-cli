@@ -1,23 +1,16 @@
 {
-    "name": "mo1",
+    "name": "project-name",
     "version": "0.0.1",
-    "description": "vue project",
+    "description": "Scaffolding for VUE",
     "scripts": {
-        "build": "cross-env NODE_ENV=development webpack --progress --hide-modules",
-        "watch": "cross-env NODE_ENV=development webpack --watch --progress --hide-modules",
-        "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
-        "prod": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+        "dev": "gulp"
     },
-    "dependencies": {
-        "vue": "^2.3.0",
-        "vue-events": "^3.0.1",
-        "vue-router": "^2.5.3",
-        "vue-stash": "^v2.0.1-beta"
-    },
+
     "devDependencies": {
-        "cross-env": "^3.1.4",
-        "laravel-mix": "^0.5.3",
-        "webpack": "^2.2.0",
-        "webpack-dev-server": "^2.2.0"
-    }
+        "del": "^2.2.2",
+        "gulp": "^3.9.1"
+    },
+
+    "author": "dntzhang",
+    "license": "MIT"
 }

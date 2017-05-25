@@ -1,6 +1,6 @@
 {
     "name": "dio-cli",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "CLI for scaffolding dio-cli projects",
     "main": "bin/dio-cli.js",
     "preferGlobal": true,
@@ -39,6 +39,7 @@
         "ora": "^1.1.0",
         "vinyl-fs": "^2.4.4",
         "webpack": "^2.3.3"
+
     },
     "bugs": {
         "url": "https://github.com/diogoxiang/dio-cli/issues"
