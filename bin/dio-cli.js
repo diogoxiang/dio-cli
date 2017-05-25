@@ -65,8 +65,17 @@ program
         switchCommand(cmd);
     })
 
-
-
+/**
+ * @desc 编译相应的代码
+ */
+program
+    .command('dev')
+    .description('Compile your project')
+    .action(function(option) {
+        var cmd = 'dev';
+        logger.info('watch', 'Compile your project')
+        switchCommand(cmd);
+    })
 
 
 program.parse(process.argv);
@@ -79,7 +88,6 @@ program.parse(process.argv);
 // // gs(pname);
 
 
-// console.log(process.cwd())
 /**
  * @func 执行相应的方案
  * 

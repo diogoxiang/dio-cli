@@ -33,3 +33,5 @@ Now you can develop your app...
 
 - 2017年5月15日15:08:51 
     - 更新VUE模版
+- 2017年5月25日15:09:22 
+    - 增加 prod 方法
