@@ -54,6 +54,21 @@ program
     })
 
 /**
+ * @desc 初始化VUE版主要用于手机端的
+ */
+program
+    .command('thinit [projectName]')
+    .description('Initialize a new  th2 project')
+    .action(function(projectName, option) {
+        var cmd = 'thinit';
+        if (option.parent.mirror) {
+            options.mirror = option.parent.mirror;
+        }
+        switchCommand(cmd, { project: projectName, mirror: options.mirror, language: options.language })
+    })
+
+
+/**
  * @desc 编译相应的代码
  */
 program
