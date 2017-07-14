@@ -8,7 +8,7 @@
             "request": "launch",
             "name": "启动程序",
             "program": "${workspaceRoot}\\bin\\dio-cli.js",
-            "args": ["init", "${env:USERNAME}"],
+            "args": ["vinit", "${env:USERNAME}"],
             "cwd": "${workspaceRoot}"
         },
         {

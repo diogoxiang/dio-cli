@@ -54,7 +54,7 @@ program
     })
 
 /**
- * @desc 初始化VUE版主要用于手机端的
+ * @desc 初始化 太和  用于手机端的
  */
 program
     .command('thinit [projectName]')
@@ -84,23 +84,17 @@ program
  * @desc 编译相应的代码
  */
 program
-    .command('dev')
+    .command('dev [doAction]')
     .description('Compile your project')
-    .action(function(option) {
+    .action(function(doAction, option) {
         var cmd = 'dev';
-        logger.info('watch', 'Compile your project')
-        switchCommand(cmd);
+        logger.info('Watch', 'Compile your project')
+        switchCommand(cmd, doAction);
     })
 
 
 program.parse(process.argv);
 
-
-// let pname = program.args[0]
-
-// if (!pname) program.help();
-
-// // gs(pname);
 
 
 /**
