@@ -3,7 +3,7 @@ A Node Command Line Tool to auto generate a web structure.
 
 ## Install
 
-    npm install dio-cli -g
+    cnpm install dio-cli -g
 
 ## Usage
 
@@ -15,7 +15,7 @@ A Node Command Line Tool to auto generate a web structure.
     dio thinit <project name>
 
 
-### Then
+## Then
 
     cd <project name>
     npm install
