@@ -74,23 +74,23 @@ dio build [-C|--no-compress]
 # 压缩后删除 dist
 
 ```
-tofu build [-d|--delete]
+dio build [-d|--delete]
 update
-tofu update
+dio update
 ```
  
 ## 更新模板，i-tofu 和 tofu-cli
 
 ```
-tofu update [-a|--all]
+dio update [-a|--all]
 lint
-tofu lint
+dio lint
 ```
  
 ## 自动修复
 
 ```
-tofu lint [-f|--fix]
+dio lint [-f|--fix]
 ```
 
 
