@@ -5,136 +5,138 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const { resolveCwd } = require('./lib/utils')
 
 const getAssetsPath = (_path, config) => {
-    return resolveCwd(config.assetsSubDirectory, _path)
+	return resolveCwd(config.assetsSubDirectory, _path)
 }
-const resolveCur = function (...p) {
-    return path.resolve(__dirname, ...p)
+// 访问dio-cli 的服务资源
+const resolveCur = function(...p) {
+	return path.resolve(__dirname, ...p)
 }
 
 const getCssLoaders = (env, inVue) => {
-    let styleLoader = inVue ? 'vue-style-loader' : 'style-loader'
+	let styleLoader = inVue ? 'vue-style-loader' : 'style-loader'
 
-    if (env === 'production') {
-        return ExtractTextPlugin.extract({
-            fallback: styleLoader,
-            use: ['css-loader',{
-                loader: 'postcss-loader',
-                options: {
-                    config: {
-                        path: path.posix.join(__dirname, 'postcss.config.js')
-                    },
-                    plugins: (loader) => [
+	if (env === 'production') {
+		return ExtractTextPlugin.extract({
+			fallback: styleLoader,
+			use: ['css-loader', {
+				loader: 'postcss-loader',
+				options: {
+					config: {
+						path: path.posix.join(__dirname, 'postcss.config.js')
+					},
+					plugins: (loader) => [
                         require('autoprefixer')()
                     ]
-                }
+				}
             }, 'sass-loader']
-        })
-    } else {
-        return [styleLoader, 'css-loader', {
-            loader: 'postcss-loader',
-            options: {
-                config: {
-                    path: path.posix.join(__dirname, 'postcss.config.js')
-                },
-                plugins: (loader) => [
+		})
+	} else {
+		return [styleLoader, 'css-loader', {
+			loader: 'postcss-loader',
+			options: {
+				config: {
+					path: path.posix.join(__dirname, 'postcss.config.js')
+				},
+				plugins: (loader) => [
                     require('autoprefixer')()
                 ]
-            }
+			}
         }, 'sass-loader']
-    }
+	}
 }
 
-module.exports = function (config) {
-    const env = JSON.parse(config.env.NODE_ENV)
-    const tofurc = require('../lib/get-config')()
-    let eslintRules = require('./rules')
-    if (tofurc && tofurc.rules) {
-        eslintRules = Object.assign({}, eslintRules, tofurc.rules)
-    }
+module.exports = function(config) {
+	const env = JSON.parse(config.env.NODE_ENV)
+	const tofurc = require('../lib/get-config')()
+	let eslintRules = require('./rules')
+	if (tofurc && tofurc.rules) {
+		eslintRules = Object.assign({}, eslintRules, tofurc.rules)
+	}
 
-    return {
-        entry: {
-            app: resolveCwd('src/main.js'),
-        },
-        output: {
-            path: resolveCwd('dist'),
-            filename: '[name].js',
-            publicPath: config.assetsPublicPath
-        },
-        resolveLoader: {
-            modules: [resolveCur("../node_modules"), "node_modules"]
-        },
-        resolve: {
-            modules: [resolveCur("../node_modules"), "node_modules"],
-            extensions: ['.js', '.vue', '.json'],
-            alias: {
-                'vue$': 'vue/dist/vue.common.js'
-            }
-        },
-        module: {
-            rules: [
-                {
-                    test: /\.(vue|js(x)?)$/,
-                    enforce: 'pre',
-                    loader: 'eslint-loader',
-                    include: [resolveCwd('src')],
-                    options: {
-                        ignorePattern: ['static/*'],
-                        formatter: require("eslint-friendly-formatter"),
-                        useEslintrc: false,
-                        parser: 'babel-eslint',
-                        parserOptions: {
-                            sourceType: 'module'
-                        },
-                        env: ['browser'],
-                        plugins: [
+	return {
+		entry: {
+			app: resolveCwd('src/main.js'),
+		},
+		output: {
+			path: resolveCwd('dist'),
+			filename: '[name].js',
+			publicPath: config.assetsPublicPath
+		},
+		resolveLoader: {
+			modules: [resolveCur("../node_modules"), "node_modules"]
+		},
+		resolve: {
+			modules: [resolveCur("../node_modules"), "node_modules"],
+			extensions: ['.js', '.vue', '.json'],
+			alias: {
+				'vue$': 'vue/dist/vue.common.js',
+				'@': resolveCwd('src')
+			}
+		},
+		module: {
+			rules: [
+				{
+					test: /\.(vue|js(x)?)$/,
+					enforce: 'pre',
+					loader: 'eslint-loader',
+					include: [resolveCwd('src')],
+					options: {
+						ignorePattern: ['static/*'],
+						formatter: require("eslint-friendly-formatter"),
+						useEslintrc: false,
+						parser: 'babel-eslint',
+						parserOptions: {
+							sourceType: 'module'
+						},
+						env: ['browser'],
+						plugins: [
                             'html'
                         ],
-                        rules: eslintRules
-                    }
+						rules: eslintRules
+					}
                 },
-                {
-                    test: /\.vue$/,
-                    loader: 'vue-loader',
-                    options: {
-                        loaders: {
-                            scss: getCssLoaders(env, true)
-                        }
-                    }
+				{
+					test: /\.vue$/,
+					loader: 'vue-loader',
+					options: {
+						loaders: {
+							scss: getCssLoaders(env, true)
+						}
+					}
                 },
-                {
-                    test: /\.(css|scss)$/,
-                    use: getCssLoaders(env)
+				{
+					test: /\.(css|scss)$/,
+					use: getCssLoaders(env)
                 },
-                {
-                    test: /\.js(x)?$/,
-                    exclude: /node_modules/,
-                    use: {
-                        loader: 'babel-loader'
-                    }
+				{
+					test: /\.js(x)?$/,
+					exclude: /node_modules/,
+					use: {
+						loader: 'babel-loader'
+					}
                 },
-                {
-                    test: /\.html$/,
-                    exclude: [resolveCwd('template.html')],
-                    loader: 'vue-html-loader'
+				{
+					test: /\.html$/,
+					exclude: [resolveCwd('template.html')],
+					loader: 'vue-html-loader'
                 },
-                {
-                    test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-                    loader: 'url-loader',
-                    options: {
-                        limit: 10000,
-                        name: 'static/img/[name].[hash:7].[ext]'
-                    }
+				{
+					test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+					loader: 'url-loader',
+					options: {
+						limit: 10000,
+						name: 'static/img/[name].[hash:7].[ext]'
+					}
                 },
-                {
-                    test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-                    loader: 'url-loader',
-                    options: {
-                        limit: 10000,
-                        name: 'static/font/[name].[hash:7].[ext]'
-                    }
+				{
+					test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+					loader: 'url-loader',
+					options: {
+						limit: 10000,
+						name: 'static/font/[name].[hash:7].[ext]'
+					}
                 }
             ]
-        }
-    }
+		}
+	}
 }
