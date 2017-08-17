@@ -36,7 +36,7 @@ async function init() {
 			break
 		case 'electron':
 			name = 'macadamia'
-		case 'M':
+		case 'vue-template-m':
 			name = 'vue-template-m' // VUE移动版的模板
 		default:
 			break
@@ -58,8 +58,8 @@ async function selectTemplate() {
 			type: 'list',
 			default: 0,
 			choices: [
-            'PC',
-            'M'
+            // 'PC',
+            'vue-template-m'
         ]
 		})
 		.catch(err => {
