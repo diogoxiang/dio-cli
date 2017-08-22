@@ -26,8 +26,8 @@
     dio init
     dio server
     dio build
-    dio update
-    dio lint
+    dio update(未完成)
+    dio lint(未完成)
 
 > 现在来介绍下这些命令的用法。
 
@@ -62,7 +62,7 @@
     dio lint
 ```
  
-### 自动修复
+### 自动修复(未完成)
 
 ```
     dio lint [-f|--fix]
