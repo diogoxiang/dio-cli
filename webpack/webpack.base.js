@@ -125,7 +125,8 @@ module.exports = function(config) {
 					loader: 'url-loader',
 					options: {
 						limit: 10000,
-						name: 'static/img/[name].[hash:7].[ext]'
+						name: 'static/img/[name].[hash:7].[ext]',
+						publicPath: '../'
 					}
                 },
 				{

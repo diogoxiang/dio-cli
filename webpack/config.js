@@ -15,7 +15,7 @@ module.exports = {
 		index: resolveCwd('./dist/index.html'),
 		assetsRoot: resolveCwd('./dist'),
 		assetsSubDirectory: 'static',
-		assetsPublicPath: '/',
+		assetsPublicPath: './',
 		productionSourceMap: config.productionSourceMap
 	}
 }
