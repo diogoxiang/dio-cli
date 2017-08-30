@@ -34,6 +34,7 @@ module.exports = (deleteDist) => {
 		.homedir, 'Desktop', newName)
 
 	output.on('close', function() {
+
 		fs.copy(resolveCwd('dist.zip'), dist, (err) => {
 			if (err) {
 				log('移动 dist.zip 文件出错，请在当前文件夹查看打包好的压缩包', 'red')

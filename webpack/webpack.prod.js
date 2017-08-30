@@ -8,67 +8,71 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
-const config = require('./config').build
+const config = require('./config')
+	.build
 const baseWebpackConfig = require('./webpack.base')(config)
 
 function getAssetsPath(_path) {
-    return path.posix.join(config.assetsSubDirectory, _path)
+	return path.posix.join(config.assetsSubDirectory, _path)
 }
 
 const webpackConfig = merge(baseWebpackConfig, {
-    devtool: config.productionSourceMap ? '#source-map' : false,
-    output: {
-        path: config.assetsRoot,
-        filename: getAssetsPath('js/[name].[chunkhash].js'),
-        chunkFilename: getAssetsPath('js/[id].[chunkhash].js')
-    },
-    plugins: [
+	devtool: config.productionSourceMap ? '#source-map' : false,
+	output: {
+		path: config.assetsRoot,
+		filename: getAssetsPath('js/[name].[chunkhash].js'),
+		chunkFilename: getAssetsPath('js/[id].[chunkhash].js')
+	},
+	plugins: [
         new webpack.DefinePlugin({
-            'process.env': config.env
-        }),
+			'process.env': config.env
+		}),
         new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true
-        }),
+			sourceMap: true
+		}),
         new ExtractTextPlugin({
-            filename: getAssetsPath('css/[name].css')
-        }),
+			filename: getAssetsPath('css/[name].css')
+		}),
         new OptimizeCSSPlugin({
-            cssProcessorOptions: {
-                safe: true
-            }
-        }),
+			cssProcessorOptions: {
+				safe: true
+			}
+		}),
         new HtmlWebpackPlugin({
-            title: require(resolveCwd('config')).title,
-            filename: config.index,
-            template: 'template.html',
-            inject: true,
-            minify: {
-                removeComments: true,
-                removeAttributeQuotes: true
-            },
-            chunksSortMode: 'dependency'
-        }),
+			title: require(resolveCwd('config'))
+				.title,
+			filename: config.index,
+			template: 'template.html',
+			inject: true,
+			minify: {
+				removeComments: true,
+				removeAttributeQuotes: true
+			},
+			chunksSortMode: 'dependency'
+		}),
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            minChunks (module, count) {
-                return (
-                    module.resource &&
-                    /\.js$/.test(module.resource) &&
-                    module.resource.indexOf(
-                        resolveCwd('node_modules')
-                    ) === 0
-                )
-            }
-        }),
+			name: 'vendor',
+			minChunks(module, count) {
+				return (
+					module.resource &&
+					/\.js$/.test(module.resource) &&
+					module.resource.indexOf(
+						resolveCwd('node_modules')
+					) === 0
+				)
+			}
+		}),
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'manifest',
-            chunks: ['vendor']
-        }),
+			name: 'manifest',
+			chunks: ['vendor']
+		}),
         new CopyWebpackPlugin([{
-            from: resolveCwd('static'),
-            to: config.assetsSubDirectory,
-            ignore: ['.*']
+			from: resolveCwd('static'),
+			to: config.assetsSubDirectory,
+			ignore: ['.*']
         }])
+
+
     ]
 })
 
