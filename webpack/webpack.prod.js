@@ -31,7 +31,7 @@ const webpackConfig = merge(baseWebpackConfig, {
 			sourceMap: true
 		}),
         new ExtractTextPlugin({
-			filename: getAssetsPath('css/[name].css')
+			filename: getAssetsPath('css/[name].[chunkhash].css')
 		}),
         new OptimizeCSSPlugin({
 			cssProcessorOptions: {
@@ -42,7 +42,7 @@ const webpackConfig = merge(baseWebpackConfig, {
 			title: require(resolveCwd('config'))
 				.title,
 			filename: config.index,
-			template: 'template.html',
+			template: resolveCwd('template.html'),
 			inject: true,
 			minify: {
 				removeComments: true,
@@ -72,7 +72,8 @@ const webpackConfig = merge(baseWebpackConfig, {
 			ignore: ['.*']
         }])
 
-
+		 // Scope Hoisting  webpack 3.4 support
+ 		//  new webpack.optimize.ModuleConcatenationPlugin()
     ]
 })
 

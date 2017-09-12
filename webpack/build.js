@@ -44,8 +44,12 @@ module.exports = (compress, deleteDist) => {
 
 			log('打包成功。', 'cyan')
 
+			// 创建目录
+			fs.ensureDirSync(resolveCwd('./dist/static/css/static/img'), (err) => {
+				if (err) return console.error(err)
+			})
 			// 移动图片位置
-			fs.move(resolveCwd('./dist/img'), resolveCwd('./dist/static/img'), (err) => {
+			fs.copy(resolveCwd('./dist/static/img'), resolveCwd('./dist/static/css/static/img'), (err) => {
 				if (err) return console.error(err)
 				log('正在压缩ZIP', 'cyan')
 				// 压缩 dist 文件夹，并移动到桌面
