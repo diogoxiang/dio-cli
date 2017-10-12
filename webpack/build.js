@@ -19,12 +19,13 @@ const { isPlainObject } = require('./lib/utils')
 
 const tofurc = require('../lib/get-config')()
 let webpackConfig = require('./webpack.prod')
+// 支持 webpackConfig 在 .diofurc.js 里进行配置
 if (tofurc && tofurc.webpack && isPlainObject(tofurc.webpack)) {
 	webpackConfig = merge(webpackConfig, tofurc.webpack)
 }
 
 module.exports = (compress, deleteDist) => {
-	const spinner = ora('构建打包中...')
+	const spinner = ora('Dio-cli构建打包中....wait a minute')
 	spinner.start()
 
 	rm(path.join(config.assetsRoot), err => {
@@ -44,6 +45,10 @@ module.exports = (compress, deleteDist) => {
 
 			log('打包成功。', 'cyan')
 
+			//----
+			/**
+			 * 这里主要是用于修复 .CSS图片引入错误 暂时先这样解决
+			 */
 			// 创建目录
 			fs.ensureDirSync(resolveCwd('./dist/static/css/static/img'), (err) => {
 				if (err) return console.error(err)
@@ -57,6 +62,7 @@ module.exports = (compress, deleteDist) => {
 					require('./lib/compress.js')(deleteDist)
 				}
 			})
+			//----- 
 
 		})
 	})

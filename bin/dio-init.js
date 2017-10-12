@@ -36,8 +36,10 @@ async function init() {
 			break
 		case 'electron':
 			name = 'macadamia'
+			break
 		case 'vue-template-m':
 			name = 'vue-template-m' // VUE移动版的模板
+			break
 		default:
 			break
 	}
