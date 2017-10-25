@@ -20,7 +20,7 @@ async function init() {
 	const { confirm } = await inquirer.prompt({
 		type: 'confirm',
 		name: 'confirm',
-		message: '确定要将项目创建在当前文件夹吗？'
+		message: 'Are you sure you want to create the project in the current folder? \n 确定要将项目创建在当前文件夹吗？'
 	})
 
 	if (!confirm) return
@@ -72,11 +72,20 @@ async function selectTemplate() {
 
 /**
  * 下载之后做的事情
- * @param {String} dist 项目目录
+ * @param {String}   项目目录
  */
 function afterDownload() {
 	fs.removeSync(resolveCwd('.npmignore'))
 
+	//--- 增加gitignore 
+	fs.readFile(resolveCwd('gitignore'), (err, data) => {
+		if (err) throw err;
+		fs.writeFile(resolveCwd('.gitignore'), data, (err) => {
+			if (err) throw err;
+			// console.log('The file has been saved!');
+		});
+	});
+	//-----
 	log();
 	log('已完成项目的初始化:', 'green');
 	log();
@@ -84,13 +93,13 @@ function afterDownload() {
 	log();
 	log('接下来你需要：', 'white');
 	log();
-	log('    npm install', 'white');
+	log('    cnpm install', 'white');
 	log('    git init', 'white');
 	log();
 	log('然后你可以：', 'white');
 	log();
-	log('    - dio server          运行开发服务', 'white');
-	log('    - dio build           打包项目', 'white');
-	log('    - dio update          更新框架以及命令行工具至最新版本', 'white');
+	log('    - dio server          运行开发项目', 'white');
+	log('    - dio build           打包发布项目', 'white');
+	// log('    - dio update          更新框架以及命令行工具至最新版本', 'white');
 	log();
 }
