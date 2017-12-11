@@ -31,7 +31,7 @@ const getCssLoaders = (env, inVue) => {
         },
         "sass-loader"
       ],
-      //   修复BUG 图片的引入路径错误
+      //   修复CSS BUG 图片的引入路径错误
       publicPath: "../../"
     });
   } else {
