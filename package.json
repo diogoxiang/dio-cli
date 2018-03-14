@@ -14,7 +14,11 @@
     "type": "git",
     "url": "git+https://github.com/diogoxiang/dio-cli.git"
   },
-  "keywords": ["dio", "cli", "dio-cli"],
+  "keywords": [
+    "dio",
+    "cli",
+    "dio-cli"
+  ],
   "author": "diogoxiang@qq.com",
   "license": "ISC",
   "dependencies": {

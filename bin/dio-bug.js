@@ -12,7 +12,7 @@ program
   .option("-d, --delete", "压缩后删除 dist")
   .parse(process.argv);
 
-const config = require(resolveCwd("./config.js"));
+// const config = require(resolveCwd("./config.js"));
 
 bug();
 
@@ -24,5 +24,6 @@ async function bug(params) {
   //   // console.log(program);
   //   console.log(program.compress);
   //   console.log(program.delete);
-  console.log(config);
+  // console.log(config);
+  console.log(111)
 }
