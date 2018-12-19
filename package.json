@@ -1,6 +1,6 @@
 {
   "name": "dio-cli",
-  "version": "1.0.12",
+  "version": "1.0.14",
   "description": "CLI for scaffolding dio-cli projects , 前端项目, 构建工具",
   "main": "bin/dio.js",
   "preferGlobal": true,
