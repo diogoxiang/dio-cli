@@ -25,6 +25,6 @@ function bug(params) {
 	//   console.log(program.compress);
 	//   console.log(program.delete);
 	// console.log(config);
-	console.log(112221)
+	console.log(112223333333111)
 	// console.log(cwd);
 }

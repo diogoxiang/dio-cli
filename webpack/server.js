@@ -62,6 +62,8 @@ module.exports = (port, peace) => {
   const host = (dioConfig && dioConfig.href) || "localhost";
   const url = `http://${host}:${port}`;
 
+  console.log(url);
+
   app.listen(port);
 
   webpackMiddlewareInstance.dev.waitUntilValid(() => {

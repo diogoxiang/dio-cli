@@ -10,7 +10,7 @@ const checkVersion = require("../lib/check-version");
 const { resolveCwd } = require("../lib/utils");
 
 main();
-
+ 
 async function main() {
   if (process.argv[2] !== "lint" && process.argv[2] !== "bug") await beforeInit();
   // 注入  Command 参数
