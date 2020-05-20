@@ -31,7 +31,7 @@
 			"request": "launch",
 			"name": "启动程序bug",
 			"program": "${workspaceRoot}\\bin\\dio.js",
-			"args": ["bug"],
+			"args": ["exec"],
 			// "cwd": "${workspaceRoot}"
 			"cwd": "G:\\mywork\\demo"
 		},
