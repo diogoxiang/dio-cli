@@ -1,6 +1,9 @@
 const program = require("commander");
 const cwd = process.cwd();
 
+// const checkHasInited = require("../lib/check-init");
+const checkVersion = require("../lib/check-version");
+
 const fs = require("fs-extra");
 
 const { resolveCwd } = require("../lib/utils");
@@ -26,5 +29,10 @@ function bug(params) {
 	//   console.log(program.delete);
 	// console.log(config);
 	console.log(112223333333111)
+	
 	// console.log(cwd);
+
+	// checkHasInited()
+
+	// checkVersion("dio")()
 }

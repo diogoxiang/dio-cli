@@ -32,7 +32,7 @@ async function main() {
 async function beforeInit() {
 	if (process.argv[2] !== "init") {
 		checkHasInited();
-
+		
 		// 检测dio-ui UI库
 		const packageJson = require(resolveCwd("package.json"));
 		if (packageJson.dependencies && packageJson.dependencies["dio-ui"])

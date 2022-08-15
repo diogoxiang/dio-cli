@@ -13,32 +13,54 @@
 			"restart": true,
 			"console": "integratedTerminal",
 			"internalConsoleOptions": "neverOpen",
-			"args": ["init"],
+			"args": [
+				"init"
+			],
 			"autoAttachChildProcesses": true,
-			"cwd": "G:\\mywork\\demo"
+			"cwd": "F:\\gitee.com\\dio-demo\\demo1"
 		},
-		  {
+		{
 			"type": "node",
 			"request": "launch",
 			"name": "启动程序 server ",
 			"program": "${workspaceRoot}\\bin\\dio-server.js",
-			"args": ["server", "${env:USERNAME}"],
+			"args": [
+				"server",
+				"${env:USERNAME}"
+			],
 			// "cwd": "${workspaceRoot}"
 			"cwd": "F:\\Diogo\\tobaccoSvn\\201603_外_陕西中烟项目\\源代码\\trunk\\WEB_Front\\cloud2_shanxi\\cloud2_develop\\shanxi-ucenterDay"
 		},
 		{
 			"type": "node",
 			"request": "launch",
-			"name": "启动程序bug",
+			"name": "启动程序init",
 			"program": "${workspaceRoot}\\bin\\dio.js",
-			"args": ["exec"],
+			"args": [
+				"init"
+			],
 			// "cwd": "${workspaceRoot}"
-			"cwd": "G:\\mywork\\demo"
+			"cwd": "F:\\mywork\\demo"
 		},
-
-
-
-
-		 
-    ]
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "启动程序 bug",
+			"program": "${workspaceRoot}\\bin\\dio.js",
+			"args": [
+				"bug"
+			],
+			"cwd": "F:\\gitee.com\\dio-demo\\demo1"
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "启动程序 build",
+			"program": "${workspaceRoot}\\bin\\dio.js",
+			"args": [
+				"build"
+			],
+			"cwd": "F:\\gitee.com\\dio-demo\\demo1"
+		},
+	]
 }
